@@ -4,14 +4,29 @@ import { getAllMovies } from "./services/movies.service";
 import {MoviesLayout} from "./layout/movies.layout";
 import {FilterComponent} from "./components/filter.component";
 import {MovieComponent} from "./components/movie.component";
+import {SearchComponent} from "./components/search.component";
 
 function App() {
 
   // movies local state
   const [movies, setMovies] = useState(null);
+  const [filteredMovies, setFilteredMovies] = useState(null);
 
   // view mode - default grid
   const [viewMode, setViewMode] = useState('grid')
+
+  const editSearchTerm = (e) => {
+      filterMovies(e.target.value)
+  }
+
+  const filterMovies = (term) => {
+    setFilteredMovies(
+        movies.filter(movie =>
+            // search title, genres and actors
+            [movie.title, movie.genres.join(' '), movie.actors.join(' ')].join('').toLowerCase().includes(term.toLowerCase())
+        )
+    )
+  }
 
   // will call only once after first render
   useEffect(() => {
@@ -21,6 +36,7 @@ function App() {
         .then(movies => {
           console.log(movies);
           setMovies(movies);
+          setFilteredMovies(movies);
         })
         .catch(e => {
           console.error(e);
@@ -30,10 +46,12 @@ function App() {
 
   return (
     <MoviesLayout>
-      <FilterComponent />
+      <FilterComponent
+      searchComponent={<SearchComponent onChange={editSearchTerm}/>}
+      />
       <div className={['movies', viewMode].join(' ')}>
         {
-          movies ? movies.map(movie => {
+          filteredMovies ? filteredMovies.map(movie => {
             return <MovieComponent viewMode={viewMode} movie={movie} key={movie.id}/>
           }) : <p>Loading...</p>
         }
