@@ -5,6 +5,7 @@ import {MoviesLayout} from "./layout/movies.layout";
 import {FilterComponent} from "./components/filter.component";
 import {MovieComponent} from "./components/movie.component";
 import {SearchComponent} from "./components/search.component";
+import {ViewModeComponent} from "./components/view-mode.component";
 
 function App() {
 
@@ -34,7 +35,6 @@ function App() {
     // get all movies after component render
     getAllMovies()
         .then(movies => {
-          console.log(movies);
           setMovies(movies);
           setFilteredMovies(movies);
         })
@@ -47,7 +47,8 @@ function App() {
   return (
     <MoviesLayout>
       <FilterComponent
-      searchComponent={<SearchComponent onChange={editSearchTerm}/>}
+      searchComponent={ <SearchComponent onChange={editSearchTerm}/> }
+      viewModeComponent={ <ViewModeComponent onChange={(mode) => setViewMode(mode)} viewMode={viewMode}/>}
       />
       <div className={['movies', viewMode].join(' ')}>
         {
