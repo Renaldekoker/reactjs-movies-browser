@@ -28,3 +28,12 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
+
+
+### Serve production on local machine
+#### on Mac `npm run serve-prod`
+
+Builds and serves the app on [0.0.0.0:80]
+
+#### on Windows / Linux - Copy the `build` folder into an Apace server like MAMP or similar
+
