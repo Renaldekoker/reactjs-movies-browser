@@ -10,6 +10,9 @@ function App() {
   // movies local state
   const [movies, setMovies] = useState(null);
 
+  // view mode - default grid
+  const [viewMode, setViewMode] = useState('grid')
+
   // will call only once after first render
   useEffect(() => {
 
@@ -28,10 +31,10 @@ function App() {
   return (
     <MoviesLayout>
       <FilterComponent />
-      <div className={'movies-grid'}>
+      <div className={['movies', viewMode].join(' ')}>
         {
           movies ? movies.map(movie => {
-            return <MovieComponent movie={movie} key={movie.id}/>
+            return <MovieComponent viewMode={viewMode} movie={movie} key={movie.id}/>
           }) : <p>Loading...</p>
         }
       </div>

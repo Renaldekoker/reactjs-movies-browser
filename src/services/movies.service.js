@@ -4,8 +4,6 @@
 export const getAllMovies = async() => {
   // Use mock data in dev
   if(process.env.NODE_ENV === 'development') {
-    console.log(process.env.NODE_ENV)
-
       return new Promise((resole) => {
         return resole([
           {
