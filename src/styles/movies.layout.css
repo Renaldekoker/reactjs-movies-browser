@@ -1,0 +1,13 @@
+.title {
+    text-align: center;
+    background-color: #3fc79c;
+    padding: 15px;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.app-content {
+    max-width: 1200px;
+    margin: auto;
+}

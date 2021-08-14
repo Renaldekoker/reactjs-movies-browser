@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "serve-prod": "npm run build && cd build && php -S 0.0.0.0:80"
   },
   "eslintConfig": {
     "extends": [

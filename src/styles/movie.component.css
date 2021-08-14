@@ -1,0 +1,8 @@
+.movie-wrapper {
+    background-color: #c7783f;
+    border-radius: 4px;
+}
+
+img {
+    max-width: 100%;
+}
